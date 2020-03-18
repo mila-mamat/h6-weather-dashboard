@@ -2,11 +2,13 @@ let cityToForecast; // city that user requested or the the newest record in the 
 //set search history stored as an empty array if no search history is stored in client
 let searchHistoryStored = JSON.parse(localStorage.getItem("searchHistoryStored")) || []; 
 let clientLocationProtocal = location.protocol;  
+console.log(clientLocationProtocal)
 
 
 function updatePage() {
     //render weather info if there is a previous search history or user entered a city
     if (searchHistoryStored.length > 0) {
+        console.log(clientLocationProtocal)
         renderTodaysWeather();
         renderForecastedWeather();
         renderSearchHistory();
@@ -89,6 +91,7 @@ function renderTodaysWeather() {
     document.querySelector("#current-date").textContent = " (" + moment().format("L") + ") ";
 
     //get current weather from OpenWeather forecast API
+    console.log(clientLocationProtocal)
     let todaysWeatherURL = clientLocationProtocal+ "//api.openweathermap.org/data/2.5/weather?q=" + cityToForecast + "&units=imperial&appid=ac5b144a5d66349f6a02d23d24193989";
     console.log(todaysWeatherURL)
     fetch(todaysWeatherURL)
