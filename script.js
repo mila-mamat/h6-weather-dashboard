@@ -7,7 +7,6 @@ if (location.protocol === 'http:') {
 } else {
     clientlocationProtocal = "https:"
 }
-console.log(clientlocationProtocal)
 
 function updatePage() {
     //render weather info if there is a previous search history or user entered a city
@@ -95,7 +94,6 @@ function renderTodaysWeather() {
 
     //get current weather from OpenWeather forecast API
     let todaysWeatherURL = clientlocationProtocal+ "//api.openweathermap.org/data/2.5/weather?q=" + cityToForecast + "&units=imperial&appid=ac5b144a5d66349f6a02d23d24193989";
-    console.log(todaysWeatherURL)
     fetch(todaysWeatherURL)
         .then(function (response) {
             if (response.ok) {
