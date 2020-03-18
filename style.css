@@ -1,0 +1,19 @@
+#current-weather-icon {
+    height:4rem;
+    width:4rem;
+}
+
+
+
+.card-body {
+    min-height:200px;
+}
+
+.card-body img {
+    height:50px;
+    width:50px;
+}
+
+/* remove the img border when there is no city to display  */
+img[src=""] { display: none; }
+

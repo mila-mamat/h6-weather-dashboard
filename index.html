@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+</head>
+
+<body>
+  <header>
+    <h1 class="font-weight-bold text-center text-white bg-dark p-3">Weather Dashboard</h1>
+  </header>
+
+  <div class="container-fluid ">
+    <div class="row">
+      <!-- sidebar in the left -->
+      <aside class="col-md-3 bg-light p-3 rounded">
+        <h4>Search for a city</h4>
+        <form>
+          <div class="row">
+            <input class="col-9 form-control mx-3" type="search" placeholder="City Name" aria-label="Search" />
+            <button class="col-auto btn btn-primary  px-2" type="submit"><i class="fas fa-search"></i></button>
+          </div>
+          <!-- search history list container, search history will be added and updated by js  -->
+          <div class="list-group mt-2 " id="search-history-list"></div>
+        </form>
+      </aside>
+
+      <!-- weather info in the top right  -->
+      <main class="col-md-9 mt-3">
+        <!-- current weather container in the top right  -->
+        <div class="container border border-black rounded">
+          <h3 class="pt-3 ml-3"><span id="city-name" class="font-weight-bold">No previous search available.</span><span
+              id="current-date"></span><img src="" id="current-weather-icon" />
+          </h3>
+          <p class="p-1 ml-3">Temperature: <span id="temperature"> </span></p>
+          <p class="p-1 ml-3">Humidity: <span id="humidity"> </span></p>
+          <p class="p-1 ml-3">Wind Speed: <span id="wind-speed"></span></p>
+          <p class="p-1 ml-3">UV Index: <span id="uv-index"></span></p>
+        </div>
+
+        <!-- 5-day forecast container in the bottom right  -->
+        <div class="card border-0 mt-3">
+          <h3 class="card-title ">5-day Forecast</h3>
+          <div class="card-deck text-white">
+            <!-- 1 day forecast  -->
+            <div class="card bg-primary">
+              <div class="card-body px-3">
+                <!-- date container -->
+                <h5 class="card-title"></h5>
+                <!-- weather icon container -->
+                <img src="" class="card-text" />
+                <!-- temperature container -->
+                <p class="card-text"></p>
+                <!-- humidity container-->
+                <p class="card-text"></p>
+              </div>
+            </div>
+            <!-- 2 day forecast  -->
+            <div class="card bg-primary">
+              <div class="card-body px-3">
+                <h5 class="card-title "></h5>
+                <img src="" />
+                <p class="card-text "></p>
+                <p class="card-text"></p>
+              </div>
+            </div>
+            <!-- 3 day forecast  -->
+            <div class="card bg-primary">
+              <div class="card-body px-3">
+                <h5 class="card-title "></h5>
+                <img src="" />
+                <p class="card-text "></p>
+                <p class="card-text"></p>
+              </div>
+            </div>
+            <!-- 4 day forecast  -->
+            <div class="card bg-primary">
+              <div class="card-body px-3">
+                <h5 class="card-title "></h5>
+                <img src="" />
+                <p class="card-text "></p>
+                <p class="card-text"></p>
+              </div>
+            </div>
+            <!-- 5 day forecast  -->
+            <div class="card bg-primary">
+              <div class="card-body px-3">
+                <h5 class="card-title "></h5>
+                <img src="" />
+                <p class="card-text "></p>
+                <p class="card-text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
