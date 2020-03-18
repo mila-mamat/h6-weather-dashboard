@@ -1,14 +1,17 @@
 let cityToForecast; // city that user requested or the the newest record in the history list
 //set search history stored as an empty array if no search history is stored in client
 let searchHistoryStored = JSON.parse(localStorage.getItem("searchHistoryStored")) || []; 
-let clientLocationProtocal = location.protocol;  
-console.log(clientLocationProtocal)
-
+let clientlocationProtocal;
+if (location.protocol === 'http:') {
+    clientlocationProtocal = "http:"
+} else {
+    clientlocationProtocal = "https:"
+}
+console.log(clientlocationProtocal)
 
 function updatePage() {
     //render weather info if there is a previous search history or user entered a city
     if (searchHistoryStored.length > 0) {
-        console.log(clientLocationProtocal)
         renderTodaysWeather();
         renderForecastedWeather();
         renderSearchHistory();
@@ -91,8 +94,7 @@ function renderTodaysWeather() {
     document.querySelector("#current-date").textContent = " (" + moment().format("L") + ") ";
 
     //get current weather from OpenWeather forecast API
-    console.log(clientLocationProtocal)
-    let todaysWeatherURL = clientLocationProtocal+ "//api.openweathermap.org/data/2.5/weather?q=" + cityToForecast + "&units=imperial&appid=ac5b144a5d66349f6a02d23d24193989";
+    let todaysWeatherURL = clientlocationProtocal+ "//api.openweathermap.org/data/2.5/weather?q=" + cityToForecast + "&units=imperial&appid=ac5b144a5d66349f6a02d23d24193989";
     console.log(todaysWeatherURL)
     fetch(todaysWeatherURL)
         .then(function (response) {
@@ -106,7 +108,7 @@ function renderTodaysWeather() {
             updateSearchHistory();
             //render current weather info 
             let iconNumber = response.weather[0].icon
-            document.querySelector("#current-weather-icon").src = clientLocationProtocal+"//openweathermap.org/img/wn/" + iconNumber + "@2x.png"
+            document.querySelector("#current-weather-icon").src = clientlocationProtocal+"//openweathermap.org/img/wn/" + iconNumber + "@2x.png"
             document.querySelector("#temperature").textContent = response.main.temp + " °F";
             document.querySelector("#humidity").textContent = response.main.humidity + " %";
             document.querySelector("#wind-speed").textContent = response.wind.speed + " MPH";
@@ -114,7 +116,7 @@ function renderTodaysWeather() {
             //use coordination from response in the UV index API url
             let cityLat = response.coord.lat;
             let cityLon = response.coord.lon;
-            let UVindexURL = clientLocationProtocal+"//api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLon + "&appid=ac5b144a5d66349f6a02d23d24193989";
+            let UVindexURL = clientlocationProtocal+"//api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLon + "&appid=ac5b144a5d66349f6a02d23d24193989";
             //get uv index from OpenWeather uv index API
             fetch(UVindexURL)
                 .then(uvResponse => uvResponse.json())
@@ -147,7 +149,7 @@ function renderTodaysWeather() {
 function renderForecastedWeather() {
     let forecastCards = document.querySelectorAll(".card-body")
     //get forecast info from OpenWeather forecast API
-    let weatherForecastURL = clientLocationProtocal+"//api.openweathermap.org/data/2.5/forecast?q=" + cityToForecast + "&units=imperial&appid=ac5b144a5d66349f6a02d23d24193989";
+    let weatherForecastURL = clientlocationProtocal+"//api.openweathermap.org/data/2.5/forecast?q=" + cityToForecast + "&units=imperial&appid=ac5b144a5d66349f6a02d23d24193989";
     fetch(weatherForecastURL)
         .then(function (response) {
             if (response.ok) {
@@ -166,7 +168,7 @@ function renderForecastedWeather() {
                 card.children[0].textContent = date;
                 //render forecast info
                 let iconNumber = response.list[weatherIndex].weather[0].icon;
-                card.children[1].src = clientLocationProtocal+"//openweathermap.org/img/wn/" + iconNumber + "@2x.png"
+                card.children[1].src = clientlocationProtocal+"//openweathermap.org/img/wn/" + iconNumber + "@2x.png"
                 card.children[2].textContent = "Temp: " + response.list[weatherIndex].main.temp + " °F";
                 card.children[3].textContent = "Humidity: " + response.list[weatherIndex].main.humidity + " %";
 
