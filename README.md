@@ -21,5 +21,5 @@ If I **refresh the weather dashboard**, I am presented with the last searched ci
 
 
 ## Link to the website
-link: https://mila-mamat.github.io/homework6-weather-dashboard/index.html
+link: https://mila-mamat.github.io/h6-weather-dashboard/
 
